@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DT User</title>
+
+	#parse('common/path-css.vm')
+
+</head>
+<body>
+	<div id="container" class="effect mainnav-lg">
+
+		#parse('common/nav-bar.vm')
+
+		<!-- CONTENT -->
+		<!--===================================================-->
+		<div class="boxed">
+			
+			<!-- CONTENT CONTAINER -->
+			<!--===================================================-->
+			<div id="content-container">
+				
+				<!-- PAGE TITTLE -->
+				<!--===================================================-->
+				<div id="page-title">
+					<h1 class="page-header text-overflow">Blank page</h1>
+					<!-- SEARCHBOX -->
+					<!--===================================================-->
+					<div class="searchbox">
+						<div class="input-group custom-search-form">
+							<input type="text" class="form-control" placeholder="Search.." />
+							<span class="input-group-btn">
+								<button class="text-muted" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<!--===================================================-->
+					<!-- END OF SEARCHBOX -->
+					
+				</div>
+				<!--===================================================-->
+				<!-- END OF PAGE TITLE -->
+				
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Library</a></li>
+					<li class="active">Data</li>
+				</ol>
+				
+				<!-- PAGE CONTENT -->
+				<!--===================================================-->
+				<div id="page-content">
+					<h3 class="text-thin">Your content...</h3>
+					Hello : All
+				</div>
+				<!--===================================================-->
+				<!-- END OF PAGE CONTENT -->
+
+				
+			</div>
+			<!--===================================================-->
+			<!-- END OF CONTENT CONTAINER -->
+
+			#parse('common/nav-left.vm') 
+			
+		</div>
+		<!--===================================================-->
+		<!--END OF CONTENT -->
+		
+		#parse('common/footer.vm') 
+	</div>
+	<!--===================================================-->
+	<!-- END OF CONTAINER -->
+	
+#parse('common/path-js.vm') 
+	
+</body>
+</html>

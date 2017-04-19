@@ -1,0 +1,200 @@
+#set($path = ${rc.contextPath})
+<meta charset="utf-8">
+<!-- NAVBAR -->
+<!--===================================================-->
+<header id="navbar">
+    <div id="navbar-container" class="boxed">
+        <!-- BRAND LOGO & TEXT -->
+        <!--===================================================-->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <img alt="DuceTech Admin" src="$path/static/images/logo5050.png" class="brand-icon">
+					<span class="brand-title">
+						<span class="brand-text">路网</span>
+					</span>
+            </a>
+        </div>
+        <!--===================================================-->
+        <!-- END OF BRAND LOGO & TEXT -->
+
+        <!-- NAVBAR DROPDOWN -->
+        <!--===================================================-->
+        <div class="navbar-content clearfix">
+            <ul class="nav navbar-top-links pull-left">
+                <!-- MAINMENU TOGGLE BUTTON -->
+                <!--===================================================-->
+                <li class="tgl-menu-btn">
+                    <a id="demo-toggle-mainnav-btn" href="#">
+                        <i class="fa fa-navicon fa-lg"></i>
+                    </a>
+                </li>
+                <!--===================================================-->
+
+                <!-- NOTIFICATION DROPDOWN -->
+                <!--===================================================-->
+                <li class="dropdown">
+
+                    <!-- Dropdown button -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell fa-lg"></i>
+                        #if($notifications.size()!=0)
+                            <span class="badge badge-header badge-danger"></span>
+                        #end
+                    </a>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+                    <!-- Dropdown menu -->
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                    <div class="dropdown-menu dropdown-menu-md with-arrow">
+                        <div class="pad-all bord-btm">
+                            <p class="text-lg text-muted text-thin mar-no">你有 $notifications.size() 个通知</p>
+                        </div>
+                        <div class="nano scrollable">
+                            <div class="nano-content">
+                                <ul class="head-list">
+
+
+                                    <!-- Dropdown list -->
+                                    #foreach($note in $notifications)
+                                        <li>
+                                            #if($note.type=="1")
+                                            	<a class="media" href="#" onclick="newTab('task_take','工单接收','$path/device/task/take')">
+                                            #elseif($note.type=="2")
+                                            	<a class="media" href="#" onclick="newTab('check_normal','质检','$path/device/check/normal')">
+                                            #else
+                                            	<a class="media" href="#" onclick="newTab('check_random','抽检','$path/device/check/random')">
+                                            #end
+                                            <div class="media-left">
+													<span class="icon-wrap icon-circle bg-primary">
+														<i class="fa fa-comment fa-lg"></i>
+													</span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="text-nowrap">$note.content</div>
+                                                <small class="text-nowrap text-muted">于 $note.time 更新</small>
+                                            </div>
+                                        </a>
+                                        </li>
+                                    #end
+
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                </li>
+                <!-- END OF NOTIFICATION DROPDOWN -->
+                <!--===================================================-->
+
+            </ul>
+            
+            <ul class="nav navbar-top-links pull-left">
+            	<li style="top:15px;left:500px">
+            	</li>
+            </ul>
+
+            #if($user)
+                <ul class="nav navbar-top-links pull-right">
+
+                    <!-- USER DROPDOWN -->
+                    <!--===================================================-->
+                    <li id="dropdown-user" class="dropdown">
+
+
+                        <!-- Dropdown button -->
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+							<span class="pull-right">
+								<img class="img-circle img-user media-object" src="$path/static/images/av1.png"
+                                     alt="Profile Picture">
+							</span>
+
+                            <div class="username hidden-xs">$user.name</div>
+                            <div id="userId" style="display: none">$user.userId</div>
+                        </a>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+                        <!-- Dropdown menu -->
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
+
+                            <!-- Dropdown heading  -->
+                            <div class="pad-all bord-btm">
+                                <p class="text-lg text-muted text-thin mar-btm">个人信息</p>
+                            </div>
+
+                            <ul class="head-list">
+
+                                <!-- Dropdown list -->
+                                <li>
+                                    <a href="#" onclick="newTab('user_info','个人资料','$path/user/info')">
+                                        <i class="fa fa-user fa-fw fa-lg"></i>
+                                        <span>资料</span>
+                                    </a>
+                                </li>
+
+                                <!-- Dropdown list -->
+								<!--
+                                <li>
+                                    <a class="clearfix" href="#">
+                                        <span class="badge badge-danger pull-right">2</span>
+										<span class="pull-left">
+											<i class="fa fa-envelope fa-fw fa-lg"></i>
+											<span>消息</span>
+										</span>
+                                    </a>
+                                </li>
+								-->
+
+                                <!-- Dropdown list -->
+                                <li>
+                                    <a class="clearfix" href="#"
+                                       onclick="newTab('user_setting','修改密码','$path/user/password')">
+										<span class="pull-left">
+											<i class="fa fa-gear fa-fw fa-lg"></i>
+											<span>设置</span>
+										</span>
+                                    </a>
+                                </li>
+
+                                <!-- Dropdown list -->
+							<!--
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-question-circle fa-fw fa-lg"></i>
+                                        <span>帮助</span>
+                                    </a>
+                                </li>
+							-->
+                            </ul>
+
+
+                            <!-- Dropdown footer -->
+                            <div class="pad-all">
+                                <a href="$path/logout"
+                                   class="btn btn-sm btn-primary btn-labeled pull-right fa fa-sign-out icon-lg">退出</a>
+                            </div>
+                        </div>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                    </li>
+                    <!-- END OF USER DROPDOWN -->
+                    <!--===================================================-->
+
+                </ul>
+            #end
+
+        </div>
+        <!--===================================================-->
+        <!-- END OF NAVBAR DROPDOWN -->
+
+    </div>
+</header>
+<!--===================================================-->
+<!-- END OF NAVBAR -->

@@ -1,0 +1,267 @@
+<style>
+	.ztree span{
+		color:#fff;
+	}
+	.fixed-asset{
+		width:100%;
+		background:#404040;
+		opacity:0.7;
+		color:#fff;
+		height:50px;
+	}
+	.fixed-asset:hover{
+		font-weight:bold;
+		color:#fff;
+	}
+	.btn:focus{
+		background:#404040;
+		color:#fff;
+	}
+
+</style>
+<meta charset="utf-8">
+	
+
+		<nav id="mainnav-container" data-sm="mainnav-sm" data-all="mainnav-lg">
+			<div id="mainnav">
+				<!-- MAIN NAVIGATION : MENU -->
+				<!--===================================================-->
+				<div id="mainnav-menu-wrap">
+					<div class="nano">
+						<div class="nano-content">
+						
+						<!--台账树-->
+						<ul id="mainnav-menu" class="list-group">
+							<li>
+								 <a href="#">
+			                        <i class="fa fa-table"></i>
+			                        <span class="menu-title">日常进度管理</span>
+			                        <i class="fa arrow"></i>
+			                    </a>
+			                     <ul class="collapse">
+									#if($shiro.hasPermission("测试"))
+			                        <li>
+			                            <a href="#" onclick="newTab('asset24','财务台账','$path/test/pager')">
+			                                <span class="menu-title">财务台账</span>
+			                                <i class="fa arrow"></i>
+			                            </a>
+			                        </li>
+									#end
+								</ul>
+
+							<!-- 
+				                   <ul class="collapse">
+				                        <li>
+				                            <a href="#" onclick="newTab('asset1','计划大表编制','$path/asset/asset1')">
+				                                <i class="fa fa-table"></i>
+				                                <span class="menu-title">页面2</span>
+				                                <i class="fa arrow"></i>
+				                            </a>
+				                             <ul class="collapse">
+						                        <li>
+						                            <a href="#" onclick="newTab('asset20','计划大表编制','$path/asset/asset20')">
+						                                <i class="fa fa-table"></i>
+						                                <span class="menu-title">资产预警</span>
+						                                <i class="fa arrow"></i>
+						                            </a>
+						                            <ul class="collapse">
+								                        <li>
+								                            <a href="#" onclick="newTab('asset20','计划大表编制','$path/asset/asset20')">
+								                                <i class="fa fa-table"></i>
+								                                <span class="menu-title">页面4</span>
+								                                <i class="fa arrow"></i>
+								                            </a>    
+								                        </li>
+								                    </ul>       
+						                        </li>
+						                    </ul>-->
+				                        </li>
+				                    </ul>
+				                    
+				                    
+				               
+				           <!-- </ul>	
+				            	<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset1','人防技防','$path/asset/asset1')">测试页面1</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset2','人防技防','$path/asset/asset2')">测试页面2</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset3','人防技防','$path/asset/asset3')">测试页面3</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset4','人防技防','$path/asset/asset4')">测试页面4</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset5','人防技防','$path/asset/asset5')">测试页面5</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset6','人防技防','$path/asset/asset6')">测试页面6</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset7','人防技防','$path/asset/asset7')">测试页面7</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset8','人防技防','$path/asset/asset8')">附属设备8</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset9','人防技防','$path/asset/asset9')">测试页面9</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset10','人防技防','$path/asset/asset10')">测试页面10</span>				
+									</a>
+								</li>
+							</ul>
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset11','人防技防','$path/asset/asset11')">生命轨迹11</span>				
+									</a>
+								</li>
+							</ul>								
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset12','人防技防','$path/asset/asset12')">设备改造计划12</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset13','人防技防','$path/asset/asset13')">设备改造计划13</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset14','人防技防','$path/asset/asset14')">设备改造立项计划2-14</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset15','人防技防','$path/asset/asset15')">设备改造立项计划3-15</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset16','人防技防','$path/asset/asset16')">设备改造立项计划4-16</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset17','人防技防','$path/asset/asset17')">更新改造新设备-17</span>				
+									</a>
+								</li>
+							</ul>						
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset18','人防技防','$path/asset/asset18')">更新改造新设备(2)-18</span>				
+									</a>
+								</li>
+							</ul>				
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset19','人防技防','$path/asset/asset19')">设备</span>				
+									</a>
+								</li>
+							</ul>	             
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">	
+									 <i class="fa fa-table"></i>								
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset20','人防技防','$path/asset/asset20')">资产预警20</span>				
+									</a>
+								</li>
+							</ul>			             
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">
+										 <i class="fa fa-table"></i>									
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset21','人防技防','$path/asset/asset21')">物资台账21</span>				
+									</a>
+								</li>
+							</ul>			             
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">	
+										 <i class="fa fa-table"></i>								
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset22','人防技防','$path/asset/asset22')">预算页签22</span>				
+									</a>
+								</li>
+							</ul>			             
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">	
+										 <i class="fa fa-table"></i>								
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset23','人防技防','$path/asset/asset23')">资产清单23</span>				
+									</a>
+								</li>
+							</ul>	
+							<ul id="mainnav-menu" class="list-group">
+								<li>
+									<a href="#">	
+										 <i class="fa fa-table"></i>								
+										<span style="padding: 10px 20px 12px 6px;" href="#" onclick="newTab('asset17','人防技防','$path/asset/asset17')">更新改造新设备-17</span>				
+									</a>
+								</li>
+							</ul>	
+						</ul>-->
+							<!-- MAIN NAVIGATION : WIDGET -->
+						</div>
+					</div>
+				</div>
+				<!--===================================================-->
+				<!-- END OF MAIN NAVIGATION : MENU -->
+			</div>
+		</nav>
+		<!--===================================================-->
+		<!-- END OF MAIN NAVIGATION -->
