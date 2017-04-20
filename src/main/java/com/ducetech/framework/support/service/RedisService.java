@@ -1,6 +1,6 @@
 package com.ducetech.framework.support.service;
 
-import com.ducetech.cons.GlobalConstant;
+import com.ducetech.framework.cons.GlobalConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

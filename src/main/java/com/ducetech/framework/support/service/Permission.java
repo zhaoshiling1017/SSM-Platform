@@ -19,12 +19,7 @@
  * <http://www.apache.org/>.
  * 
  */
-package com.ducetech.shiro.web.support.velocity;
-
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.util.Collection;
+package com.ducetech.framework.support.service;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -33,6 +28,11 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.config.ValidScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.util.Collection;
 
 /**
  * Velocity 模板引擎，Shiro 权限标签

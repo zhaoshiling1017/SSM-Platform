@@ -1,6 +1,6 @@
 package com.ducetech.framework.web.listener;
 
-import com.ducetech.cons.GlobalConstant;
+import com.ducetech.framework.cons.GlobalConstant;
 import com.ducetech.framework.context.SpringContextHolder;
 import com.ducetech.framework.support.service.DynamicConfigService;
 import com.google.common.collect.Maps;

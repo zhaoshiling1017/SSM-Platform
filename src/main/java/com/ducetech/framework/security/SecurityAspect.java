@@ -1,10 +1,9 @@
 package com.ducetech.framework.security;
 
-import com.ducetech.cons.GlobalConstant;
+import com.ducetech.framework.cons.GlobalConstant;
 import com.ducetech.framework.context.WebContext;
+import com.ducetech.framework.util.ExtStringUtil;
 import com.ducetech.framework.web.annotation.IgnoreSecurity;
-import com.ducetech.framework.web.view.OperationResult;
-import com.ducetech.util.StringUtil;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -26,7 +25,7 @@ public class SecurityAspect {
     }
 
     public void setTokenName(String tokenName) {
-        if (StringUtil.isEmpty(tokenName)) {
+        if (ExtStringUtil.isBlank(tokenName)) {
             tokenName = DEFAULT_TOKEN_NAME;
         }
         this.tokenName = tokenName;
@@ -37,7 +36,7 @@ public class SecurityAspect {
         if (null != WebContext.getRequest()) {
             path = WebContext.getRequest().getServletPath();
         }
-        if (!StringUtil.isEmpty(path) && path.startsWith(GlobalConstant.API_PATH_PREFIX)) {
+        if (!ExtStringUtil.isBlank(path) && path.startsWith(GlobalConstant.API_PATH_PREFIX)) {
             // 从切点上获取目标方法
             MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
             Method method = methodSignature.getMethod();
@@ -48,7 +47,7 @@ public class SecurityAspect {
             // 从 request header 中获取当前 token
             String token = WebContext.getRequest().getHeader(tokenName);
             // 检查 token 有效性
-            if (StringUtil.isEmpty(token) || !tokenManager.checkToken(token)) {
+            if (ExtStringUtil.isBlank(token) || !tokenManager.checkToken(token)) {
                 String message = String.format("token [%s] is invalid", token);
                 throw new UnauthorizedException(message);
             }

@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

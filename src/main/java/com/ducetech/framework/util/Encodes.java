@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -36,7 +36,7 @@ public class Encodes {
         try {
             return Hex.decodeHex(input.toCharArray());
         } catch (Exception e) {
-            throw Exceptions.unchecked(e);
+            throw com.ducetech.framework.util.Exceptions.unchecked(e);
         }
     }
 
@@ -52,9 +52,9 @@ public class Encodes {
      */
     public static String encodeBase64(String input) {
         try {
-            return Base64.encodeBase64String(input.getBytes(HttpClientUtil.CHARSET_UTF8));
+            return Base64.encodeBase64String(input.getBytes(com.ducetech.framework.util.HttpClientUtil.CHARSET_UTF8));
         } catch (Exception e) {
-            throw Exceptions.unchecked(e);
+            throw com.ducetech.framework.util.Exceptions.unchecked(e);
         }
     }
 
@@ -118,7 +118,7 @@ public class Encodes {
         try {
             return URLEncoder.encode(part, DEFAULT_URL_ENCODING);
         } catch (UnsupportedEncodingException e) {
-            throw Exceptions.unchecked(e);
+            throw com.ducetech.framework.util.Exceptions.unchecked(e);
         }
     }
 
@@ -130,7 +130,7 @@ public class Encodes {
         try {
             return URLDecoder.decode(part, DEFAULT_URL_ENCODING);
         } catch (UnsupportedEncodingException e) {
-            throw Exceptions.unchecked(e);
+            throw com.ducetech.framework.util.Exceptions.unchecked(e);
         }
     }
 

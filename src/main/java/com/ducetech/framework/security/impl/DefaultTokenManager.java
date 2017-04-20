@@ -1,7 +1,7 @@
 package com.ducetech.framework.security.impl;
 
 import com.ducetech.framework.security.TokenManager;
-import com.ducetech.util.CodecUtil;
+import com.ducetech.framework.util.CodecUtil;
 import com.github.pagehelper.StringUtil;
 
 import java.util.Map;

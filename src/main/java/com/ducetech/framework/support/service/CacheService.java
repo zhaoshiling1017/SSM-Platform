@@ -1,4 +1,4 @@
-package com.ducetech.cache;
+package com.ducetech.framework.support.service;
 
 import com.ducetech.app.model.Role;
 import com.ducetech.app.model.User;
@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 @Service
-public class CachePool {
+public class CacheService {
 
     @Autowired
     private UserService userService;
@@ -38,7 +38,7 @@ public class CachePool {
 
     private static final Cache<String, Object> cache = CacheBuilder.newBuilder().maximumSize(1000).build();
 
-    private static final Logger logger = LoggerFactory.getLogger(CachePool.class);
+    private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
 
     /**
      * 获取缓存中的用户信息

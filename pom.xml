@@ -7,6 +7,26 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SSM-Platform</name>
 	<url>http://maven.apache.org</url>
+
+	<developers>
+		<developer>
+			<id>lenzhao</id>
+			<name>lenzhao</name>
+			<email>lenzhao@yahoo.com</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>Apache License</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>https://github.com/zhaoshiling1017/SSM-Platform.git</connection>
+		<url>https://github.com/zhaoshiling1017/SSM-Platform</url>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.1.6.RELEASE</spring.version>
@@ -16,6 +36,7 @@
 		<activiti-version>5.17.0</activiti-version>
 		<httpcomponents.version>4.4.1</httpcomponents.version>
 		<quartz.version>2.2.1</quartz.version>
+		<jetty.version>9.0.4.v20130625</jetty.version>
 	</properties>
 
 	<dependencies>
@@ -447,6 +468,13 @@
 			<version>1.1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlets</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+
 	</dependencies>
 
   	<build>
@@ -462,7 +490,6 @@
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 					<encoding>UTF-8</encoding>
-					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -1,6 +1,6 @@
 package com.ducetech.framework.web.json;
 
-import com.ducetech.util.DateUtil;
+import com.ducetech.framework.util.DateUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;

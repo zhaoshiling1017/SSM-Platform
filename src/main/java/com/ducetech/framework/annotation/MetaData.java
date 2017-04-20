@@ -27,7 +27,6 @@ public @interface MetaData {
 
     /**
      * 标识属性是否出现在版本比较列表
-     * @see PersistableController#getRevisionFields()
      */
     boolean comparable() default true;
 

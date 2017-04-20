@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * Created by lenzhao on 17-2-2.
  */
@@ -24,7 +26,7 @@ public class AdvertiserController {
     public OperationResult createAdvertiser(@RequestBody AdvertiserVO advertiserVO) {
         // 创建 token
         String token = tokenManager.createToken("10001");
-        return OperationResult.buildSuccessResult(token);
+        return OperationResult.buildConfirmResult(token, new Date());
     }
 
     @RequestMapping(value = "/api/advertisers/{id}", method = RequestMethod.GET)

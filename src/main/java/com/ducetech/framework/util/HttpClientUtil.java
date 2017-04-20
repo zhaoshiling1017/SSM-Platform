@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import com.ducetech.framework.exception.ServiceException;
 import com.google.common.collect.Maps;

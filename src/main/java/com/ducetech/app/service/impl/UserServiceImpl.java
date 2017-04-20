@@ -9,7 +9,7 @@ import com.ducetech.app.service.RoleService;
 import com.ducetech.app.service.UserService;
 import com.ducetech.framework.model.PagerRS;
 import com.ducetech.framework.model.BaseQuery;
-import com.ducetech.util.Digests;
+import com.ducetech.framework.util.Digests;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

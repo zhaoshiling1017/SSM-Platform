@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Directory;

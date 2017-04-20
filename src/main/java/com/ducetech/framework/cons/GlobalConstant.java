@@ -1,4 +1,4 @@
-package com.ducetech.cons;
+package com.ducetech.framework.cons;
 
 import com.ducetech.framework.annotation.MetaData;
 import com.google.common.collect.Maps;

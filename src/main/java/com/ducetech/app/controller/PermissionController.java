@@ -9,12 +9,11 @@ import com.ducetech.app.service.DepartmentService;
 import com.ducetech.app.service.PermissionService;
 import com.ducetech.app.service.RoleService;
 import com.ducetech.app.service.UserService;
-import com.ducetech.cache.CachePool;
 import com.ducetech.framework.controller.BaseController;
 import com.ducetech.framework.model.PagerRS;
 import com.ducetech.framework.model.BaseQuery;
-import com.ducetech.util.DateUtil;
-import com.ducetech.util.Digests;
+import com.ducetech.framework.util.DateUtil;
+import com.ducetech.framework.util.Digests;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -109,7 +108,6 @@ public class PermissionController extends BaseController{
 			user.setCreatorId(userInfo.getUserId());
 			user.setCreatedAt(DateUtil.formatDate(new Date(), DateUtil.DEFAULT_TIME_FORMAT));
 			userService.addUser(user);
-			initRoleIdsCache();
 			response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
 		}
 	}
@@ -162,7 +160,6 @@ public class PermissionController extends BaseController{
 		   }
 		   if(!result.equals("err")){
 			   userService.updateUser(user);
-			   initRoleIdsCache();
 			   response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
 		   }
 	}
@@ -170,7 +167,6 @@ public class PermissionController extends BaseController{
 
 	/**
 	* @Title: userStatus
-	* @param user
 	* @param response
 	* @param request
 	* @throws java.io.IOException
@@ -311,7 +307,6 @@ public class PermissionController extends BaseController{
 	/**
 	* @Title: updateRole
 	* @param role
-	* @param model
 	* @param request
 	* @param response
 	* @throws java.io.IOException
@@ -320,7 +315,6 @@ public class PermissionController extends BaseController{
 	@RequestMapping(value = "/updateRole", method = RequestMethod.POST)
 	public void updateRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		roleService.updateRoleAndPermission(role);
-		initRoleIdsCache();
 		response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
 	}
 
@@ -409,10 +403,5 @@ public class PermissionController extends BaseController{
 	public void getCheckedPermission(String roleId, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		List<Permission> permissions = permissionService.getPermissionsByRoleId(roleId);
 		response.getWriter().write(JSON.toJSONString(permissions));
-	}
-	
-	
-	public void initRoleIdsCache() {
-		CachePool.cleanUp(CachePool.DIC_ROLE_USER_LIST_NAME);
 	}
 }

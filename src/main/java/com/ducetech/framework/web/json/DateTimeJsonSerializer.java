@@ -1,6 +1,6 @@
 package com.ducetech.framework.web.json;
 
-import com.ducetech.util.DateUtil;
+import com.ducetech.framework.util.DateUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -14,7 +14,7 @@ public class DateTimeJsonSerializer extends JsonSerializer<Date> {
     @Override
     public void serialize(Date value, JsonGenerator jgen, SerializerProvider provider) throws IOException,
             JsonProcessingException {
-        if (value != null) {
+        if (null != value) {
             jgen.writeString(DateUtil.formatTime(value));
         }
     }

@@ -2,7 +2,7 @@ package com.ducetech.app.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.ducetech.framework.controller.BaseController;
-import com.ducetech.util.DateUtil;
+import com.ducetech.framework.util.DateUtil;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

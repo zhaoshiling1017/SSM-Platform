@@ -2,7 +2,7 @@ package com.ducetech.framework.support.service;
 
 import com.ducetech.framework.annotation.MetaData;
 import com.ducetech.framework.context.ExtPropertyPlaceholderConfigurer;
-import com.ducetech.util.DateUtil;
+import com.ducetech.framework.util.DateUtil;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

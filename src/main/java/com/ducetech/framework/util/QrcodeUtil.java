@@ -1,4 +1,4 @@
-package com.ducetech.util;
+package com.ducetech.framework.util;
 
 import com.google.common.collect.Maps;
 import com.google.zxing.*;

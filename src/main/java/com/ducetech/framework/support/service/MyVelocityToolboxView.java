@@ -1,15 +1,14 @@
-package com.ducetech.velocity;
-
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package com.ducetech.framework.support.service;
 
 import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.Scope;
 import org.apache.velocity.tools.ToolManager;
 import org.apache.velocity.tools.view.ViewToolContext;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 public class MyVelocityToolboxView extends VelocityToolboxView {
 

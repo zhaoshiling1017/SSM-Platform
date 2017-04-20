@@ -4,7 +4,7 @@ package com.ducetech.app.controller;
 import com.ducetech.app.model.User;
 import com.ducetech.app.service.UserService;
 import com.ducetech.framework.controller.BaseController;
-import com.ducetech.util.CookieUtil;
+import com.ducetech.framework.util.CookieUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

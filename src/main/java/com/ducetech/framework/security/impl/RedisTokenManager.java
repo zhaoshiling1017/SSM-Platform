@@ -2,7 +2,7 @@ package com.ducetech.framework.security.impl;
 
 import com.ducetech.framework.security.TokenManager;
 import com.ducetech.framework.support.service.RedisService;
-import com.ducetech.util.CodecUtil;
+import com.ducetech.framework.util.CodecUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RedisTokenManager implements TokenManager {

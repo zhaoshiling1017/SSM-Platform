@@ -89,7 +89,7 @@
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<!-- 加载 toolbox配置文件 -->
 		<property name="toolboxConfigLocation" value="/WEB-INF/classes/velocityToolBox.xml" />
-		<property name="viewClass" value="com.ducetech.velocity.MyVelocityToolboxView" />
+		<property name="viewClass" value="com.ducetech.framework.support.service.MyVelocityToolboxView" />
 		<property name="cache" value="true" />
 		<property name="prefix" value="" />
 		<property name="suffix" value=".vm" />

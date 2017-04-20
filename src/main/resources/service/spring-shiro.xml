@@ -32,13 +32,13 @@
     </bean>
 
     <!-- 自定义权限认证 -->
-    <bean id="authRealm" class="com.ducetech.shiro.AuthRealm">
+    <bean id="authRealm" class="com.ducetech.framework.security.AuthRealm">
 		<!-- 自定义密码加密算法  -->
 		<property name="credentialsMatcher" ref="passwordMatcher"/>
 	</bean>
 	
 	<!-- 设置密码加密策略 md5hash -->
-	<bean id="passwordMatcher" class="com.ducetech.shiro.CustomCredentialsMatcher"/>
+	<bean id="passwordMatcher" class="com.ducetech.framework.security.CustomCredentialsMatcher"/>
 
 	<!-- id名称就是在web.xml中配置filter名称，以一当十，声明这一个filter，实际底层引入10个fitler -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

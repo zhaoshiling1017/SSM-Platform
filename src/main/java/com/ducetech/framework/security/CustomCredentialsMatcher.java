@@ -1,7 +1,7 @@
-package com.ducetech.shiro;
+package com.ducetech.framework.security;
 
 import com.ducetech.app.model.User;
-import com.ducetech.util.Digests;
+import com.ducetech.framework.util.Digests;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
