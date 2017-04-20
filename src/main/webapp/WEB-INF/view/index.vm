@@ -45,7 +45,7 @@
                 <ul class="amazed-collapse collapse">
 					#if($shiro.hasPermission("系统管理-人员管理"))
                     <li>
-                        <a href="$path/permissions/person" target="myiframe">人员管理</a>
+                        <a href="$path//users/person" target="myiframe">人员管理</a>
                     </li>
 					#end
 					#if($shiro.hasPermission("系统管理-角色管理"))
@@ -184,93 +184,9 @@
 	function editPassword(){
 		$("#password-edit").show();
 	}
-	var timeout = null;
-	/*function webSocket(){
-    	var socket = new WebSocket("ws://"+document.domain+":8080$path/websocket");
-    	
-    	// 打开Socket 
-        socket.onopen = function(event) { 
-        
-          // 发送一个初始化消息
-          //socket.send(); 
-          // 监听消息
-          socket.onmessage = function(event) { 
-			var str = '<div class="new-mes">';
-			var mesNum = parseInt($(".mes-num").text());
-			str += '<p class="clear">';
-			str += '<span class="left">通知</span>';
-			str += '<a class="icon-delete right" href="javascript:;"></a></p>';
-			str += '<p class="content">';
-			//系统消息
-			if(event.data == 'NOTICE_TYPE_SYS'){
-				timeout = 0;
-				str += '<a href="$path/notices/notice" target="myiframe">新系统消息，点击查看</a>';
-			}else if(event.data == 'NOTICE_TYPE_PROC'){//流程提醒
-				timeout = 0;
-				str += '<a href="$path/notices/notice" target="myiframe">新流程提醒，点击查看</a>';
-			}else if(event.data == 'NOTICE_TYPE_INFO'){//集团通知
-				timeout = 0;
-				str += '<a href="$path/messages/message" target="myiframe">新集团通知，点击查看</a>';
-			}else if(event.data == 'NOTICE_TYPE_INFO_SUCCESS' || event.data =='NOTICE_TYPE_PROC_SUCCESS'){//集团通知，发送成功
-				timeout = (timeout == 0 ? 4000 : 0);
-				str += '<a href="javascript:;" target="myiframe">推送成功</a>';
-			}
-			console.log(timeout)
-			str += '<p></div>';
-			setTimeout(function(){
-				$("body").append(str);
-				if(timeout != 0){
-					setTimeout(function(){
-						hide($(".new-mes"));
-					},3000)
-				}
-			},timeout);
-			noticeUnCountIndex();
-			var timer = setTimeout(function(){
-				hide();
-			},3000);
-			$(document).on("mouseover",".new-mes",function(){
-				clearTimeout(timer);
-			}).on("mouseout",".new-mes",function(){
-				timer = setTimeout(function(){
-					hide($(this));
-				},3000);
-			})
-			function hide(obj){
-				obj.slideUp(300);
-				setTimeout(function(){
-					obj.remove();
-				},400);
-			}
-          }; 
-        
-          // 监听Socket的关闭
-          socket.onclose = function(event) { 
-            //console.log('Client notified socket has closed',event); 
-          }; 
-        
-          // 关闭Socket.... 
-          //socket.close() 
-        };
-     }*/
-	
     $(function(){
         //初始化日历
         $(".calendar").clndr();
-		//调用websocket
-		//webSocket();
-		//noticeUnCountIndex();
-		//点击通知对应菜单选中状态
-		/*$(".icon-small-bell").click(function(){
-			var href = $(this).attr("href");
-			var obj = $('.nav-ul a[href="'+ href +'"]',parent.document).closest('.link');
-			obj.addClass("selected").siblings().removeClass("selected");
-		})*/
-		//点击消息通知的链接
-		/*$(document).on("click",".new-mes .content a",function(){
-			$(".nav-notice").addClass("selected").siblings().removeClass("selected");
-			$("#mask").hide();
-		})*/
     })
 </script>
 </body>

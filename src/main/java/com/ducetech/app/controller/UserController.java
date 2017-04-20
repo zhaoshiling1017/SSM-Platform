@@ -1,10 +1,20 @@
 package com.ducetech.app.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.ducetech.app.model.Department;
+import com.ducetech.app.model.Role;
 import com.ducetech.app.model.User;
+import com.ducetech.app.service.DepartmentService;
+import com.ducetech.app.service.RoleService;
 import com.ducetech.app.service.UserService;
 import com.ducetech.framework.controller.BaseController;
+import com.ducetech.framework.model.BaseQuery;
+import com.ducetech.framework.model.PagerRS;
 import com.ducetech.framework.util.CookieUtil;
+import com.ducetech.framework.util.DateUtil;
+import com.ducetech.framework.util.Digests;
+import com.ducetech.framework.web.view.OperationResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -14,13 +24,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -30,20 +41,22 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoleService roleService;
+
+	@Autowired
+	private DepartmentService departmentService;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage(HttpServletRequest request , Model model) {
-		if(request.getSession().getAttribute("DT_LOGIN_NAME")!=null){
+	public String loginPage(HttpServletRequest request) {
+		if (request.getSession().getAttribute("DT_LOGIN_NAME")!=null) {
 			return "redirect:/";
-		}
-		String tag = request.getParameter("tag");
-		if ("sessionInvalid".equals(tag)) {
-			model.addAttribute("tag", "sessionInvalid");
 		}
 		return "login";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+	public String logoutPage() {
 		SecurityUtils.getSubject().logout();
 		return "redirect:/";
 	}
@@ -70,14 +83,14 @@ public class UserController extends BaseController {
 		return "redirect:/";
 	} 
 
-	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/info", method = RequestMethod.GET)
 	public String findUser(HttpServletRequest request, Model model) {
 		User user = getLoginUser(request);
 		model.addAttribute("user", user);
 		return "user/user-info";
 	}
 	
-	@RequestMapping(value = "/user/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/info", method = RequestMethod.POST)
 	public String editUser(@ModelAttribute("form") User user, HttpServletRequest request, Model model) {
 		String name = user.getName();
 		
@@ -90,25 +103,134 @@ public class UserController extends BaseController {
 		return "user/user-info";
 	}
 
-	@RequestMapping(value = "/user/password", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/password", method = RequestMethod.GET)
 	public String password(Model model) {
 		return "/user/password";
 	}
 
-//	@RequestMapping(value = "/user/password", method = RequestMethod.POST)
-//	public void changePassword(@ModelAttribute("form") User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		response.setContentType("application/json");
-//		String password = user.getPassword();
-//		String newPassword = user.getPassword();
-//		if (StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(newPassword)) {
-//			User userInfo = getLoginUser(request);
-//			if (Encrypt.md5(password).equals(userInfo.getPassword())) {
-//				userInfo.setPassword(Encrypt.md5(newPassword, userInfo.getSecretKey()));
-////				userService.setPassword(userInfo);
-//				response.getWriter().write("{\"success\":\"修改成功\"}");
-//			}else{
-//				response.getWriter().write("{\"warning\":\"原密码错误\"}");
-//			}
-//		}
-//	}
+	/**
+	 * @Title: person
+	 * @param model
+	 * @return String
+	 * @Description: 跳转人员首页
+	 */
+	@RequestMapping(value = "/users/person", method = RequestMethod.GET)
+	public String person(Model model) {
+		Role role = new Role();
+		role.setIsDeleted("0");
+		List<Role> roles = roleService.getRoleByQuery(role);
+		model.addAttribute("roles", roles);
+		List<Department> depts = departmentService.getAllDepartments();
+		model.addAttribute("depts", depts);
+		return "/user/users";
+	}
+
+	/**
+	 * @Title: personData
+	 * @return void
+	 * @throws Exception
+	 * @Description: 人员首页数据
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	@ResponseBody
+	public PagerRS<User> personData(HttpServletRequest request) throws Exception {
+		BaseQuery<User> query = User.getSearchCondition(User.class, request);
+		query.getT().setEmployeeCode(query.getT().getEmployeeCode().trim());
+		query.getT().setName(query.getT().getName().trim());
+		PagerRS<User> rs = userService.getUserByPager(query);
+		return rs;
+	}
+
+	/**
+	 * @Title: addUser
+	 * @return void
+	 * @throws java.io.IOException
+	 * @Description: 新增人员
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@ResponseBody
+	public OperationResult create(User user, HttpServletRequest request) throws IOException {
+		User userInfo = getLoginUser(request);
+		User us = new User();
+		us.setLoginName(user.getLoginName());
+		List<User> uName = userService.getUserByQuery(us);
+		User ur = new User();
+		ur.setEmployeeCode(user.getEmployeeCode());
+		List<User> uCode = userService.getUserByQuery(ur);
+		if (uName!=null && uName.size()>0) {
+			return OperationResult.buildFailureResult("登录名已存在", 0);
+		} else if(uCode!=null && uCode.size()>0) {
+			return OperationResult.buildFailureResult("工号已存在", 0);
+		} else {
+			user.setCreatorId(userInfo.getUserId());
+			user.setCreatedAt(DateUtil.formatDate(new Date(), DateUtil.DEFAULT_TIME_FORMAT));
+			userService.addUser(user);
+			return OperationResult.buildSuccessResult("成功", 1);
+		}
+	}
+
+	/**
+	 * @param userId
+	 * @Description: 跳转人员编辑页面
+	 */
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public User edit(@PathVariable(value="id")String userId) throws IOException {
+		User user = new User();
+		if(org.apache.commons.lang3.StringUtils.isNotEmpty(userId)){
+			user = userService.getUserByUserId(userId);
+		}
+		return user;
+	}
+
+	/**
+	 * @param user
+	 * @Description: 更新人员信息
+	 */
+	@RequestMapping(value = "/users", method = RequestMethod.PUT)
+	@ResponseBody
+	public OperationResult update(User user) throws IOException {
+		List<User> uList = userService.getAllUsers();
+		for (int i = 0; i < uList.size(); i++) {
+			if(uList.get(i).getUserId().equals(user.getUserId())){
+				uList.remove(i);
+			}
+		}
+		for (User us : uList) {
+			if (us.getLoginName().equals(user.getLoginName())) {
+				return OperationResult.buildFailureResult("用户名已存在", 0);
+			} else if (us.getEmployeeCode().equals(user.getEmployeeCode())) {
+				return OperationResult.buildFailureResult("工号已存在", 0);
+			}
+		}
+		userService.updateUser(user);
+		return OperationResult.buildFailureResult("成功", 1);
+	}
+
+
+	/**
+	 * @Description: 人员禁用启用
+	 */
+	@RequestMapping(value = "/users/{id}/updateStatus", method = RequestMethod.PUT)
+	@ResponseBody
+	public OperationResult updateStatus(@PathVariable(value="id") String userId, String isDeleted) throws IOException {
+		User user = new User();
+		user.setUserId(userId);
+		user.setIsDeleted(isDeleted);
+		userService.updateUserStatus(user);
+		return OperationResult.buildFailureResult("成功", 1);
+	}
+
+	/**
+	 * @Title: resetPass
+	 * @Description: 重置密码为123456
+	 */
+	@RequestMapping(value = "/users/{id}/resetPass", method = RequestMethod.PUT)
+	@ResponseBody
+	public OperationResult resetPass(@PathVariable(value="id") String userId) throws IOException {
+		User user = userService.getUserByUserId(userId);
+		user.setPassword(Digests.md5Hash("123456", user.getSecretKey()));
+		userService.resetPass(user);
+		return OperationResult.buildFailureResult("重置成功，密码为：123456", 1);
+	}
 }

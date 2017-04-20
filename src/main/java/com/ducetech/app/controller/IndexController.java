@@ -45,11 +45,6 @@ public class IndexController extends BaseController {
 		return "error/403";
 	}
 
-	@RequestMapping("/notify")
-	public String notify(HttpServletRequest request, Model model) {
-		getLoginUser(request, model);
-		return "index";
-	}
 
 	/**
 	 * @Title: getDate

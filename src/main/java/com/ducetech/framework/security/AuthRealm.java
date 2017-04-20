@@ -28,7 +28,7 @@ public class AuthRealm extends AuthorizingRealm {
 		// 获取当前用户的权限串
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		List<String> permissions = userService.getUserPermission(curUser.getUserId());
-		authorizationInfo.addStringPermissions(permissions); // 直接添加List<String>
+		authorizationInfo.addStringPermissions(permissions);
 		return authorizationInfo;
 	}
 
