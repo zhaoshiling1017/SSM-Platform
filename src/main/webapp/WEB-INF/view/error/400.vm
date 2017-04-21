@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>401</title>
+    <title>400</title>
     <link href="$path/static/css/error.css" rel="stylesheet">
 </head>
 <body>
-<img class="error" src="$path/static/img/401.png"/>
+<img class="error" src="$path/static/img/400.png"/>
 </body>
 </html>

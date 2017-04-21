@@ -1,13 +1,12 @@
+#set($path = ${rc.contextPath})
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>403 - 用户权限不足</title>
+    <meta charset="UTF-8">
+    <title>403</title>
+    <link href="$path/static/css/error.css" rel="stylesheet">
 </head>
 <body>
-<h2>403 - 用户权限不足</h2>
-<p>
-	<a href="/">返回首页</a>
-</p>
+<img class="error" src="$path/static/img/403.png"/>
 </body>
 </html>

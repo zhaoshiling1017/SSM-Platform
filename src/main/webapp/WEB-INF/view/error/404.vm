@@ -2,19 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>页面不存在</title>
-	<link rel="stylesheet" href="$path/static/css/error.css">
+    <meta charset="UTF-8">
+    <title>404</title>
+    <link href="$path/static/css/error.css" rel="stylesheet">
 </head>
 <body>
-<div class="row">
-    <div class="col-md-12 page-404">
-        <div class="number">404</div>
-        <div class="details">
-            <h3>请求地址或页面未找到</h3>
-            <p></p>
-        </div>
-    </div>
-</div>
+<img class="error" src="$path/static/img/404.png"/>
 </body>
 </html>
