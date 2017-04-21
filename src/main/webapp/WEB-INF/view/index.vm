@@ -187,6 +187,18 @@
     $(function(){
         //初始化日历
         $(".calendar").clndr();
+        /*if (typeof(EventSource) !== "undefined") {
+            var source = new EventSource("$path/sseTest");
+            source.addEventListener('message', function(e) {
+                console.log(e.data);
+            });
+            source.addEventListener('open', function(e) {
+                console.log("连接打开.");
+            });
+
+            source.addEventListener('error', function(e) {
+            });
+        }*/
     })
 </script>
 </body>
