@@ -36,7 +36,6 @@
 		<activiti-version>5.17.0</activiti-version>
 		<httpcomponents.version>4.4.1</httpcomponents.version>
 		<quartz.version>2.2.1</quartz.version>
-		<jetty.version>9.0.4.v20130625</jetty.version>
 	</properties>
 
 	<dependencies>
