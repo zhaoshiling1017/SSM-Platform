@@ -14,6 +14,7 @@ import com.ducetech.framework.model.PagerRS;
 import com.ducetech.framework.model.BaseQuery;
 import com.ducetech.framework.util.DateUtil;
 import com.ducetech.framework.util.Digests;
+import com.ducetech.framework.web.view.OperationResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -177,10 +178,11 @@ public class PermissionController extends BaseController{
 	* @Description: 角色已有人员数据
 	*/
 	@RequestMapping(value = "/rolePersonData", method = RequestMethod.POST)
-	public void rolePersonData(HttpServletResponse response, HttpServletRequest request) throws Exception {
+	@ResponseBody
+	public PagerRS<User> rolePersonData(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		BaseQuery<Role> query = Role.getSearchCondition(Role.class, request);
 		PagerRS<User> pageRS = userService.getUsersByRoleIdPage(query);
-		response.getWriter().write(JSON.toJSONString(pageRS));
+		return pageRS;
 	}
 
 	/**
@@ -196,22 +198,23 @@ public class PermissionController extends BaseController{
 	* @throws
 	 */
 	@RequestMapping(value = "/passwordUpdate", method = RequestMethod.POST)
-	public void passwordUpdate(User user, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	@ResponseBody
+	public OperationResult passwordUpdate(User user, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		user = userService.getUserByUserId(user.getUserId());
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newPassword");
 		String comfirmPassword  = request.getParameter("comfirmPassword");
 		String pw = Digests.md5Hash(password, user.getSecretKey());
-		if(pw.equals(user.getPassword())){
-			if(newPassword.equals(comfirmPassword)){
+		if (pw.equals(user.getPassword())) {
+			if (newPassword.equals(comfirmPassword)) {
 				user.setPassword(Digests.md5Hash(newPassword, user.getSecretKey()));
 				userService.updateUserPassword(user);
-				response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
-			}else{
-				response.getWriter().write("{\"0\":\"" + "两次密码不同" + "\"}");
+				return OperationResult.buildSuccessResult("成功", 1);
+			} else {
+				return OperationResult.buildSuccessResult("两次密码不同", 0);
 			}
-		}else {
-			response.getWriter().write("{\"0\":\"" + "旧密码错误" + "\"}");
+		} else {
+			return OperationResult.buildSuccessResult("旧密码错误", 0);
 		}
 	}
 
@@ -223,9 +226,10 @@ public class PermissionController extends BaseController{
 	* @Description: 获取所有菜单权限
 	*/
 	@RequestMapping(value = "/getAllPermission", method = RequestMethod.GET)
-	public void getAllPermission(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	@ResponseBody
+	public List<Permission> getAllPermission(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		List<Permission> permissions = permissionService.getAllPermissions();
-		response.getWriter().write(JSON.toJSONString(permissions));
+		return permissions;
 	}
 
 	/**
@@ -236,8 +240,9 @@ public class PermissionController extends BaseController{
 	* @Description: 获取角色已选的菜单权限
 	*/
 	@RequestMapping(value = "/getCheckedPermission", method = RequestMethod.POST)
-	public void getCheckedPermission(String roleId, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	@ResponseBody
+	public List<Permission> getCheckedPermission(String roleId, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		List<Permission> permissions = permissionService.getPermissionsByRoleId(roleId);
-		response.getWriter().write(JSON.toJSONString(permissions));
+		return permissions;
 	}
 }

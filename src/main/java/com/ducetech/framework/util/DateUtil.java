@@ -1,5 +1,6 @@
 package com.ducetech.framework.util;
 
+import com.ducetech.framework.support.service.DynamicConfigService;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -245,10 +246,6 @@ public class DateUtil {
 
     private static Date currentDate;
 
-    public static Date currentDate() {
-        return new Date();
-    }
-
     public static Integer getWeekOfYear(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -283,4 +280,28 @@ public class DateUtil {
         System.out.println(parseDate(time, "yyyy/MM/dd"));
     }
 
+    public static Date setCurrentDate(Date date) {
+        if (date == null) {
+            currentDate = null;
+        } else {
+            currentDate = date;
+        }
+        return currentDate;
+    }
+
+    /**
+     * 为了便于在模拟数据程序中控制业务数据获取到的当前时间
+     * 提供一个帮助类处理当前时间，为了避免误操作，只有在devMode开发模式才允许“篡改”当前时间
+     * @return
+     */
+    public static Date currentDate() {
+        if (currentDate == null) {
+            return new Date();
+        }
+        if (DynamicConfigService.isDevMode()) {
+            return currentDate;
+        } else {
+            return new Date();
+        }
+    }
 }

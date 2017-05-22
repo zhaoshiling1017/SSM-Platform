@@ -163,17 +163,15 @@
        		data: $('#passwordEditForm').serialize(),
 		    dataType: "json",
 		    error: function (request) {
-		   		initAlert(0,"网络错误");   
-		    },
-		    success: function (data) {
-				for(x in data){
-					initAlert(x,data[x]);
-					if(x == 1){
-						setTimeout(function(){
-							location.href="$path/logout";
-						},2000)
-					}
-       			}
+                initAlert(0,"网络错误");
+            },
+		    success: function (rs) {
+                initAlert(rs.data, rs.message);
+                if (rs.data == 1) {
+                    setTimeout(function(){
+                        location.href="$path/logout";
+                    },2000);
+                }
 		   	}
 		});
 	}
