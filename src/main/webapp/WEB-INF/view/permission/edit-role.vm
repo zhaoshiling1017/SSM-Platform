@@ -138,16 +138,14 @@ function updateRole(){
        error: function (request) {
        		initAlert(0,"网络错误");   
        },
-       success: function (data) {
-    		for(x in data){
-       			initAlert(x,data[x]);
-       		} 
-       		setTimeout(function(){
-       			$("#mask",parent.document).hide();
-       			setTimeout(function(){
-       				location.href="$path/permissions/role";
-       			},400)
-       		},2000)
+       success: function (rs) {
+		   	initAlert(rs.data, rs.message);
+			setTimeout(function(){
+				$("#mask",parent.document).hide();
+				setTimeout(function(){
+					location.href="$path/permissions/role";
+				},400)
+			},2000)
        	}
     });
 }

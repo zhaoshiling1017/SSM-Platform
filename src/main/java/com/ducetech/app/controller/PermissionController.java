@@ -117,12 +117,13 @@ public class PermissionController extends BaseController{
 	* @Description: 新增角色和菜单权限
 	*/
 	@RequestMapping(value = "/saveRole", method = RequestMethod.POST)
-	public void saveRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@ResponseBody
+	public OperationResult saveRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		User user = getLoginUser(request);
 		role.setCreatorId(user.getUserId());
 		role.setCreatedAt(DateUtil.formatDate(new Date(), DateUtil.DEFAULT_TIME_FORMAT));
 		roleService.addRoleAndPermission(role);
-		response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
+		return OperationResult.buildSuccessResult("成功", 1);
 	}
 
 	/**
@@ -150,9 +151,10 @@ public class PermissionController extends BaseController{
 	* @Description: 更新角色和菜单权限
 	*/
 	@RequestMapping(value = "/updateRole", method = RequestMethod.POST)
-	public void updateRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@ResponseBody
+	public OperationResult updateRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		roleService.updateRoleAndPermission(role);
-		response.getWriter().write("{\"1\":\"" + "成功" + "\"}");
+		return OperationResult.buildSuccessResult("成功", 1);
 	}
 
 	/**
